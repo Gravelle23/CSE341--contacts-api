@@ -10,12 +10,11 @@ router.get('/', async (req, res) => {
   res.json(contacts);
 });
 
-// Get single contact by ID
+// Get one contact by ID
 router.get('/:id', async (req, res) => {
   const db = getDb();
   const id = new ObjectId(req.params.id);
   const contact = await db.collection('contacts').findOne({ _id: id });
-  if (!contact) return res.status(404).send('Contact not found');
   res.json(contact);
 });
 
